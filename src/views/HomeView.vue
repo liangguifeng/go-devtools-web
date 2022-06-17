@@ -1,4 +1,12 @@
 <template>
+  <div class="button-box">
+    <div class="logo-img-view">
+      <a href="https://plugin.csdn.net/?from=plugin_json_full" target="_blank">
+        <img alt="" src="../assets/logo.png">
+      </a>
+    </div>
+    <el-button>Success</el-button>
+  </div>
   <div class="content-box">
     <Codemirror
         v-model:value="code"
@@ -46,41 +54,11 @@ export default {
         indentUnit: 4, // 智能缩进单位为4个空格长度
         foldGutter: true, // 启用行槽中的代码折叠
         styleActiveLine: true, // 显示选中行的样式
+        lineWrapping: false, // 自动换行
         extraKeys: {"Tab": "autocomplete"},   //自动提示配置
       },
     }
   },
-  // setup() {
-  //   let code = "";
-  //   let code1 = "222";
-  //
-  //   return {
-  //     code,
-  //     code1,
-  //     cmOptions: {
-  //       mode: "text/x-mysql", // 语言模式
-  //       theme: "monokai", // 主题
-  //       lineNumbers: true, // 显示行号
-  //       smartIndent: true, // 智能缩进
-  //       indentUnit: 4, // 智能缩进单位为4个空格长度
-  //       foldGutter: true, // 启用行槽中的代码折叠
-  //       styleActiveLine: true, // 显示选中行的样式
-  //       extraKeys: {"Tab": "autocomplete"},   //自动提示配置
-  //     },
-  //     onChange(val, cm) {
-  //       requests.post({
-  //         url: '/api/v1/tools/sql_to_gorm',
-  //         data: {
-  //           ddl: val
-  //         }
-  //       }).then(res => {
-  //         code1.value = res.data
-  //       }).catch(err => {
-  //         console.log(err)
-  //       })
-  //     },
-  //   };
-  // },
   mounted() {
 
   },
@@ -109,20 +87,24 @@ export default {
 .content-box {
   display: flex;
 }
-.codemirror-container.width-auto {
-  /*width: 50%;*/
+.button-box {
+  display: flex;
+  padding: 8px;
 }
 .CodeMirror {
-  /*height: auto !important;*/
-  height: calc(100vh - 78px) !important;
+  height: calc(100vh - 51px) !important;
 
-  /*min-height: 100px;*/
 }
-
 .CodeMirror-scroll {
-  height: calc(100vh - 78px) !important;
+  height: calc(100vh - 51px) !important;
   min-height: 100px;
-  /*overflow-y: hidden;*/
-  /*overflow-x: auto;*/
+}
+.logo-img-view {
+  margin-right: 6px;
+  font-family: system-ui, "PingFang SC", STHeiti, sans-serif;
+  font-size: 75%;
+}
+.logo-img-view img {
+  width: 30px;
 }
 </style>
