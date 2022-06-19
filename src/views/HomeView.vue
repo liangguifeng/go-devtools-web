@@ -18,12 +18,14 @@
         :options="cmOptions"
         border
         placeholder="请输入"
+        style="font-size: 20px"
     />
     <Codemirror
         v-model:value="code1"
         :options="cmOptions1"
         border
         placeholder="请输入"
+        style="font-size: 20px"
     />
   </div>
 
@@ -199,7 +201,6 @@ export default {
 
 <style>
 .codemirror-container {
-  font-size: 20px;
 }
 
 .content-box {
@@ -209,11 +210,11 @@ export default {
 .button-box {
   display: flex;
   padding: 8px;
+  font-size: 20px;
 }
 
 .CodeMirror {
   height: calc(100vh - 51px) !important;
-
 }
 
 .CodeMirror-scroll {
