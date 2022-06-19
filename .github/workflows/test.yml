@@ -1,0 +1,38 @@
+# 工作流名称，可自定义
+name: test
+# 触发条件
+on:
+  push:
+    # 使用 test 分支触发
+    branches: [ test ]
+# 任务
+jobs:
+  deploy:
+    # 使用ubuntu系统镜像运行自动化脚本
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [ 16.x ] #选择你需要的nodejs版本
+
+    steps:
+      - uses: actions/checkout@v2 #拉取你的最新代码
+      - name: Build Vue Project
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm install
+      - run: npm run build
+      # 第二步，推文件到服务器，使用rsync
+      - name: Deploy to Server
+        uses: AEnterprise/rsync-deploy@v1.0
+        env:
+          DEPLOY_KEY: ${{ secrets.SERVER_KEY }}
+          # exclude排除某些文件
+          SERVER_PORT: ${{ secrets.SERVER_PORT }}
+          # 要推送的文件夹，路径相对于代码仓库的根目录
+          FOLDER: ./dist
+          SERVER_IP: ${{ secrets.SERVER_HOST }}
+          USERNAME: ${{ secrets.SERVER_USERNAME }}
+          SERVER_DESTINATION: ${{ SERVER_DESTINATION }}

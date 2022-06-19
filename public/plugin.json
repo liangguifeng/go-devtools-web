@@ -4,13 +4,13 @@
   "platform": ["win32", "darwin", "linux"],
   "preload": "preload.js",
   "development": {
-    "main": "http://127.0.0.1:8081"
+    "main": "https://tools.findcat.cn"
   },
   "features": [
     {
       "code": "main",
       "explain": "一个方便的 golang 开发者工具",
-      "cmds":["golang开发者的工具"]
+      "cmds":["golang开发者工具"]
     }
   ]
 }

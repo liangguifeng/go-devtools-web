@@ -6,11 +6,11 @@
       </a>
     </div>
     <el-button @click="sql2gorm()">sql转gorm</el-button>
-    <el-button>sql转go-zero</el-button>
-    <el-button>sql转ent</el-button>
-    <el-button>yaml转go struct</el-button>
-    <el-button>xml转json</el-button>
-    <el-button>sql转es</el-button>
+    <el-button @click="sql2goZero()">sql转go-zero</el-button>
+    <el-button @click="sql2ent()">sql转ent</el-button>
+    <el-button @click="yaml2goStruct()">yaml转go struct</el-button>
+    <el-button @click="xml2Json()">xml转json</el-button>
+    <el-button @click="sql2Es()">sql转es</el-button>
   </div>
   <div class="content-box">
     <Codemirror
@@ -107,7 +107,92 @@ export default {
           message: '转写错误，请检查输入是否正确！'
         });
       })
-    }
+    },
+    sql2goZero(){
+      this.cmOptions.mode = 'text/x-mysql'
+      requests.post({
+        url: '/api/v1/tools/sql_to_go_zero',
+        data: {
+          ddl: this.code
+        }
+      }).then(res => {
+        this.cmOptions1.mode = 'text/x-mysql'
+        this.code1 = res.data
+      }).catch(err => {
+        this.$notify.error({
+          title: '错误',
+          message: '转写错误，请检查输入是否正确！'
+        });
+      })
+    },
+    sql2ent(){
+      this.cmOptions.mode = 'text/x-mysql'
+      requests.post({
+        url: '/api/v1/tools/sql_to_ent',
+        data: {
+          ddl: this.code
+        }
+      }).then(res => {
+        this.cmOptions1.mode = 'text/x-mysql'
+        this.code1 = res.data
+      }).catch(err => {
+        this.$notify.error({
+          title: '错误',
+          message: '转写错误，请检查输入是否正确！'
+        });
+      })
+    },
+    yaml2goStruct(){
+      this.cmOptions.mode = 'text/x-mysql'
+      requests.post({
+        url: '/api/v1/tools/yaml_to_go',
+        data: {
+          ddl: this.code
+        }
+      }).then(res => {
+        this.cmOptions1.mode = 'text/x-mysql'
+        this.code1 = res.data
+      }).catch(err => {
+        this.$notify.error({
+          title: '错误',
+          message: '转写错误，请检查输入是否正确！'
+        });
+      })
+    },
+    xml2Json(){
+      this.cmOptions.mode = 'text/x-mysql'
+      requests.post({
+        url: '/api/v1/tools/xml_to_json',
+        data: {
+          ddl: this.code
+        }
+      }).then(res => {
+        this.cmOptions1.mode = 'text/x-mysql'
+        this.code1 = res.data
+      }).catch(err => {
+        this.$notify.error({
+          title: '错误',
+          message: '转写错误，请检查输入是否正确！'
+        });
+      })
+    },
+    sql2Es(){
+      this.cmOptions.mode = 'text/x-mysql'
+      requests.post({
+        url: '/api/v1/tools/sql_to_es',
+        data: {
+          ddl: this.code
+        }
+      }).then(res => {
+        this.cmOptions1.mode = 'text/x-mysql'
+        this.code1 = res.data
+      }).catch(err => {
+        this.$notify.error({
+          title: '错误',
+          message: '转写错误，请检查输入是否正确！'
+        });
+      })
+    },
   }
 };
 </script>
