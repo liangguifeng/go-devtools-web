@@ -35,4 +35,4 @@ jobs:
           FOLDER: ./dist
           SERVER_IP: ${{ secrets.SERVER_HOST }}
           USERNAME: ${{ secrets.SERVER_USERNAME }}
-          SERVER_DESTINATION: ${{ SERVER_DESTINATION }}
+          SERVER_DESTINATION: ${{ secrets.SERVER_DESTINATION }}
