@@ -30,6 +30,7 @@ jobs:
         env:
           DEPLOY_KEY: ${{ secrets.SERVER_KEY }}
           # exclude排除某些文件
+          ARGS: -avz --no-owner --no-group --no-perms --progress --delete
           SERVER_PORT: ${{ secrets.SERVER_PORT }}
           # 要推送的文件夹，路径相对于代码仓库的根目录
           FOLDER: ./dist
